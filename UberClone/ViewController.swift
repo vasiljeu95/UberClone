@@ -30,11 +30,28 @@ class ViewController: UIViewController {
         if emailTextField.text == "" || passwordTextField.text == "" {
             displayAlert(title: "Missing Information", message: "You must provide both a email and password")
         } else {
-            if singUpMode {
-                // SIGN UP
-                Auth.auth()
-            } else {
-                // LOG IN
+            if let email = emailTextField.text {
+                if let password = passwordTextField.text {
+                    if singUpMode {
+                        // SIGN UP
+                        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
+                            if error != nil {
+                                self.displayAlert(title: "Error", message: error!.localizedDescription)
+                            } else {
+                                print("Sign Up Success")
+                            }
+                        })
+                    } else {
+                        // LOG IN
+                        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
+                            if error != nil {
+                                self.displayAlert(title: "Error", message: error!.localizedDescription)
+                            } else {
+                                print("Sign Up Success")
+                            }
+                        })
+                    }
+                }
             }
         }
     }
