@@ -21,7 +21,6 @@ class ViewController: UIViewController {
     
     var singUpMode = true
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -33,8 +32,17 @@ class ViewController: UIViewController {
         if singUpMode {
             topButton.setTitle("Log In", for: .normal)
             buttonButton.setTitle("Switch to Sing Up", for: .normal)
+            riderLabel.isHidden = true
+            driverLavel.isHidden = true
+            riderDriverSwitch.isHidden = true
+            singUpMode = false
         } else {
-            
+            topButton.setTitle("Sign Up", for: .normal)
+            buttonButton.setTitle("Switch to Log In", for: .normal)
+            riderLabel.isHidden = false
+            driverLavel.isHidden = false
+            riderDriverSwitch.isHidden = false
+            singUpMode = true
         }
     }
     
