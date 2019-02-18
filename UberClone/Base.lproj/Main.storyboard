@@ -24,13 +24,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="you@gmail.com" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ucL-Ij-oKj">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="rider@gmail.com" borderStyle="roundedRect" placeholder="you@gmail.com" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ucL-Ij-oKj">
                                 <rect key="frame" x="20" y="87" width="374" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="MgC-yZ-2Vb">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ABC12345" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="MgC-yZ-2Vb">
                                 <rect key="frame" x="20" y="125" width="374" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -108,10 +108,84 @@
                         <outlet property="riderDriverSwitch" destination="Q3m-Cy-d5f" id="hho-lc-5ju"/>
                         <outlet property="riderLabel" destination="JsU-ZB-fZz" id="Aqr-OG-59s"/>
                         <outlet property="topButton" destination="7vy-uK-c1N" id="v6Y-cG-lQg"/>
+                        <segue destination="GoP-fF-6CJ" kind="presentation" identifier="riderSegue" id="ebc-OS-ieP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="55" y="130"/>
+        </scene>
+        <!--Rider Controller-->
+        <scene sceneID="8ka-HS-Exp">
+            <objects>
+                <viewController id="poI-AR-SEJ" customClass="RiderController" customModule="UberClone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VlG-VR-rHG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BhF-s7-qYa">
+                                <rect key="frame" x="20" y="108" width="374" height="463"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="BhF-s7-qYa" secondAttribute="height" multiplier="374:463" id="ApO-vw-7nb"/>
+                                    <constraint firstAttribute="width" secondItem="BhF-s7-qYa" secondAttribute="height" multiplier="374:463" id="t4V-9T-LFF"/>
+                                </constraints>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHj-Ry-zDQ">
+                                <rect key="frame" x="149" y="580" width="117" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Call an Uber"/>
+                                <connections>
+                                    <action selector="callUberTapped:" destination="poI-AR-SEJ" eventType="touchUpInside" id="Ngw-2N-q7H"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BhF-s7-qYa" firstAttribute="leading" secondItem="FNK-Qs-Ee6" secondAttribute="leading" constant="20" id="dU5-D5-j76"/>
+                            <constraint firstItem="FNK-Qs-Ee6" firstAttribute="trailing" secondItem="BhF-s7-qYa" secondAttribute="trailing" constant="20" id="gDc-2X-asc"/>
+                            <constraint firstItem="BhF-s7-qYa" firstAttribute="top" secondItem="FNK-Qs-Ee6" secondAttribute="top" constant="20" id="pxU-9T-ek9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FNK-Qs-Ee6"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BeX-Wj-3d0">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="Na5-mr-TyW">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="15K-iB-Wpg">
+                                <rect key="frame" x="20" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutTapped:" destination="poI-AR-SEJ" eventType="touchUpInside" id="2RF-gq-z2U"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="callAnUberButton" destination="SHj-Ry-zDQ" id="MsY-IT-14I"/>
+                        <outlet property="map" destination="BhF-s7-qYa" id="aqL-kx-xhD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="afT-Yg-mfs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1770" y="130"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qpI-to-Wc0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GoP-fF-6CJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eQf-AF-9FD">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="poI-AR-SEJ" kind="relationship" relationship="rootViewController" id="nsy-Xn-84I"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x9O-8D-r6f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="904" y="130"/>
         </scene>
     </scenes>
 </document>

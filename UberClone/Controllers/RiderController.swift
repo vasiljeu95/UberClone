@@ -14,12 +14,12 @@ class RiderController: UIViewController {
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var callAnUberButton: UIButton!
     
-    var locationManager = ""
+    var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        locationManager.delegate = self
     }
     
     @IBAction func callUberTapped(_ ender: Any) {
