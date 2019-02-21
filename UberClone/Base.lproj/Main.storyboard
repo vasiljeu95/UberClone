@@ -130,9 +130,8 @@
                                     <constraint firstAttribute="width" secondItem="BhF-s7-qYa" secondAttribute="height" multiplier="374:463" id="t4V-9T-LFF"/>
                                 </constraints>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHj-Ry-zDQ">
-                                <rect key="frame" x="149" y="580" width="117" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHj-Ry-zDQ">
+                                <rect key="frame" x="16" y="587" width="382" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Call an Uber"/>
                                 <connections>
@@ -144,7 +143,11 @@
                         <constraints>
                             <constraint firstItem="BhF-s7-qYa" firstAttribute="leading" secondItem="FNK-Qs-Ee6" secondAttribute="leading" constant="20" id="dU5-D5-j76"/>
                             <constraint firstItem="FNK-Qs-Ee6" firstAttribute="trailing" secondItem="BhF-s7-qYa" secondAttribute="trailing" constant="20" id="gDc-2X-asc"/>
+                            <constraint firstItem="SHj-Ry-zDQ" firstAttribute="top" secondItem="BhF-s7-qYa" secondAttribute="bottom" constant="16" id="izM-OG-Tow"/>
+                            <constraint firstItem="SHj-Ry-zDQ" firstAttribute="leading" secondItem="FNK-Qs-Ee6" secondAttribute="leading" constant="16" id="j4u-pT-54D"/>
+                            <constraint firstItem="FNK-Qs-Ee6" firstAttribute="trailing" secondItem="SHj-Ry-zDQ" secondAttribute="trailing" constant="16" id="li0-s1-1KA"/>
                             <constraint firstItem="BhF-s7-qYa" firstAttribute="top" secondItem="FNK-Qs-Ee6" secondAttribute="top" constant="20" id="pxU-9T-ek9"/>
+                            <constraint firstItem="FNK-Qs-Ee6" firstAttribute="bottom" secondItem="SHj-Ry-zDQ" secondAttribute="bottom" constant="243" id="yeN-09-Vuk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FNK-Qs-Ee6"/>
                     </view>
