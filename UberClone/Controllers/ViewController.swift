@@ -38,8 +38,18 @@ class ViewController: UIViewController {
                             if error != nil {
                                 self.displayAlert(title: "Error", message: error!.localizedDescription)
                             } else {
-                                print("Sign Up Success")
-                                self.performSegue(withIdentifier: "riderSegue", sender: nil)
+                                if self.riderDriverSwitch.isOn {
+                                    // DRIVER
+                                    let req = Auth.auth().currentUser?.createProfileChangeRequest()
+                                    req?.displayName = "Driver"
+                                    req?.commitChanges(completion: nil)
+                                } else {
+                                    // RIDER
+                                    let req = Auth.auth().currentUser?.createProfileChangeRequest()
+                                    req?.displayName = "Rider"
+                                    req?.commitChanges(completion: nil)
+                                    self.performSegue(withIdentifier: "riderSegue", sender: nil)
+                                }
                             }
                         })
                     } else {
@@ -48,8 +58,12 @@ class ViewController: UIViewController {
                             if error != nil {
                                 self.displayAlert(title: "Error", message: error!.localizedDescription)
                             } else {
-                                print("Sign Up Success")
-                                self.performSegue(withIdentifier: "riderSegue", sender: nil)
+                                if user?.displayName == "Driver" {
+                                    // DRIVER
+                                } else {
+                                    // RIDER
+                                    self.performSegue(withIdentifier: "riderSegue", sender: nil)
+                                }
                             }
                         })
                     }
