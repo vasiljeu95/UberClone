@@ -197,7 +197,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="1xZ-i2-MFg">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="Iji-MH-SPA"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="Iji-MH-SPA">
+                            <connections>
+                                <action selector="logoutTapped:" destination="FdR-M4-3Rc" id="p3R-wm-jaL"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qxy-P4-oAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
