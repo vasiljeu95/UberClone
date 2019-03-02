@@ -11,16 +11,20 @@ import Firebase
 
 class DriverTableViewController: UITableViewController {
 
+    var rideReqests : [DataSnapshot] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        Database.database().reference().child("Ride Reqests").observe(.childAdded) { (snapshot) in
+            self.rideReqests.append(snapshot)
+            self.tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 50
+        return rideReqests.count
     }
 
     @IBAction func logoutTapped(_ sender: Any) {
@@ -29,10 +33,13 @@ class DriverTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "rideReqestCell", for: indexPath)
+        let snapshot = rideReqests[indexPath.row]
+        if let rideRequestDictionary = snapshot.value as? [String:AnyObject] {
+            if let email = rideRequestDictionary["email"] as? String {
+                cell.textLabel?.text = "HEllo!"
+            }
+        }
         return cell
     }
 }
