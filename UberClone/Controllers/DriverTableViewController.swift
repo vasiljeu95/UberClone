@@ -7,18 +7,33 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
+import FirebaseDatabase
+import MapKit
 
-class DriverTableViewController: UITableViewController {
+class DriverTableViewController: UITableViewController, CLLocationManagerDelegate {
 
     var rideReqests : [DataSnapshot] = []
+    var locationManager = CLLocationManager()
+    var driverLocation = CLLocationCoordinate2D()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
         Database.database().reference().child("Ride Reqests").observe(.childAdded) { (snapshot) in
             self.rideReqests.append(snapshot)
             self.tableView.reloadData()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let cord = manager.location?.coordinate {
+            driverLocation = cord
         }
     }
 
@@ -37,7 +52,17 @@ class DriverTableViewController: UITableViewController {
         let snapshot = rideReqests[indexPath.row]
         if let rideRequestDictionary = snapshot.value as? [String:AnyObject] {
             if let email = rideRequestDictionary["email"] as? String {
-                cell.textLabel?.text = "HEllo!"
+                if let lat = rideRequestDictionary["lat"] as? Double {
+                    if let lon = rideRequestDictionary["lon"] as? Double {
+                        let driverCLLocation = CLLocation(latitude: driverLocation.latitude, longitude: driverLocation.longitude)
+                        let riderCLLocation = CLLocation(latitude: lat, longitude: lon)
+                        let distance = driverCLLocation.distance(from: riderCLLocation)/1000
+                        let roundedDistance = round(distance * 100)/100
+                        
+                        
+                        cell.textLabel?.text = "\(email) - \(roundedDistance)km way"
+                    }
+                }
             }
         }
         return cell
